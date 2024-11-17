@@ -8,14 +8,13 @@ app = FastAPI()
 
 @app.get("/get/name")
 async def root(request: Request):
-    link = request.headers.get('aniLink')
-    all_data = requests.get(link)
-    soup = BeautifulSoup(all_data.text, "html.parser")
     try:
+        link = request.headers.get('aniLink')
+        all_data = requests.get(link)
+        soup = BeautifulSoup(all_data.text, "html.parser")
         all_news = soup.find('div', class_='anime-title')
         anime = all_news.find('h1')
         return anime.string
-    except NoneType:
-        error = 'not found'
-        return error
+    except:
+        return 'not found'
         
