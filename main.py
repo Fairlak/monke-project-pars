@@ -14,7 +14,7 @@ async def root(request: Request):
     try:
         all_news = soup.find('div', class_='anime-title')
         anime = all_news.find('h1')
-        return anime.string[1:-1]
+        return anime.string
     except NoneType:
         error = 'not found'
         return error
