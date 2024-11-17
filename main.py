@@ -6,7 +6,7 @@ from virtualenv.config.convert import NoneType
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/get/name")
 async def root(request: Request):
     link = request.headers.get('aniLink')
     all_data = requests.get(link)
@@ -18,3 +18,4 @@ async def root(request: Request):
     except NoneType:
         error = 'not found'
         return error
+        
